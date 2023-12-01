@@ -1,0 +1,36 @@
+<div
+  class="modal fade"
+  id="adicionarAlunoModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="adicionarAlunoModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="adicionarAlunoModalLabel">
+          Registrar Aluno
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Fechar"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- formulário -->
+        <!-- form para adicionar alunos à base de dados -->
+        <form action="/adicionarAluno" method="post">
+          <label for="name">Nome:</label>
+          <input type="text" id="name" name="name" required />
+
+          <button type="submit">Registrar aluno</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
