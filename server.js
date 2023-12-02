@@ -5,9 +5,7 @@ const app = express();
 const mongoose = require('mongoose');
 mongoose
   .connect(process.env.CONNECTIONSTRING)
-  .then(() => {
-    app.emit('emitido');
-  })
+  .then(() => app.emit('emitido'))
   .catch((e) => console.log(e));
 
 const session = require('express-session');
@@ -21,7 +19,7 @@ const {
   middlewareGlobal,
   outroMiddleware,
   checkCsrfError,
-  csrfMiddleware,
+  csrfMiddleware
 } = require('./src/middlewares/middleware');
 
 app.use(
@@ -33,10 +31,10 @@ app.use(
           "'self'",
           "'unsafe-inline'",
           'code.jquery.com',
-          'cdn.jsdelivr.net',
-        ],
-      },
-    },
+          'cdn.jsdelivr.net'
+        ]
+      }
+    }
   })
 );
 
@@ -48,14 +46,14 @@ const sessionOptions = session({
   secret: 'a812yu3281u281u8j1a8j18qwj1ajqu8qu1()',
   store: MongoStore.create({
     mongoUrl: process.env.CONNECTIONSTRING,
-    dbName: 'cursojs01',
+    dbName: 'cursojs01'
   }),
   resave: false,
   saveUninitialized: false,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24 * 7,
-    httpOnly: true,
-  },
+    httpOnly: true
+  }
 });
 
 app.use(sessionOptions);
