@@ -13,4 +13,7 @@ route.get('/adicionarAluno', alunoController.renderForm);
 // rota para processar a adição de um novo aluno
 route.post('/adicionarAluno', alunoController.adicionarAluno);
 
+// rotas de API
+route.get('/api/alunos', homeController.getAlunos);
+
 module.exports = route;

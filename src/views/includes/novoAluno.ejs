@@ -80,19 +80,12 @@
                   id="telefone"
                   name="telefone"
                   class="form-control"
-                  required
                 />
               </div>
 
               <div class="col-md-6">
                 <label for="cpf">CPF:</label>
-                <input
-                  type="number"
-                  id="cpf"
-                  name="cpf"
-                  class="form-control"
-                  required
-                />
+                <input type="number" id="cpf" name="cpf" class="form-control" />
               </div>
             </div>
           </div>
@@ -106,7 +99,6 @@
                   name="bdayDate"
                   id="bdayDate"
                   class="form-control"
-                  required
                 />
               </div>
 
@@ -117,7 +109,6 @@
                   name="startDate"
                   id="startDate"
                   class="form-control"
-                  required
                 />
               </div>
             </div>
@@ -130,7 +121,6 @@
               name="paymentMethod"
               id="paymentMethod"
               class="form-control"
-              required
             />
           </div>
 
@@ -142,3 +132,33 @@
     </div>
   </div>
 </div>
+
+<script>
+  const form = document.querySelector('.form-grid');
+
+  form.addEventListener('submit', async (e) => {
+    // e.preventDefault();
+
+    try {
+      const response = await fetch('/adicionarAluno', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: document.querySelector('#name').value,
+          email: document.querySelector('#email').value,
+          phone: document.querySelector('#telefone').value,
+          cpf: document.querySelector('#cpf').value,
+          bdayDate: document.querySelector('#bdayDate').value,
+          startDate: document.querySelector('#startDate').value,
+          paymentMethod: document.querySelector('#paymentMethod').value
+        })
+      });
+
+      response.ok
+        ? (window.location.href = '/?addedMember=true')
+        : console.error('Erro ao enviar o formulário');
+    } catch (error) {
+      console.error(error);
+    }
+  });
+</script>

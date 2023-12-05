@@ -32,7 +32,8 @@ app.use(
           "'unsafe-inline'",
           'code.jquery.com',
           'cdn.jsdelivr.net'
-        ]
+        ],
+        connectSrc: ['self', 'http://localhost:3000']
       }
     }
   })

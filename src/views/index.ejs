@@ -8,19 +8,62 @@ include('includes/novoAluno') %>
     <div class="col-lg-8 my-3">
       <h1 class="text-center">Controle</h1>
 
+      <% if (added) { %>
       <div class="row">
-        <div class="col my-3">
-          <!-- <div class="alert alert-danger">Um erro qualquer</div> -->
-        </div>
+        <div class="col my-3"></div>
       </div>
 
       <div class="responsive-table">
         <table class="table my-3"></table>
       </div>
+
+      <div class="alert alert-success">Aluno adicionado com sucesso!</div>
     </div>
+    <% } %>
 
     <div class="col-lg-2"></div>
   </div>
 </div>
+
+<div class="responsive-table">
+  <table class="table my-3">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<script>
+  async function getAlunos() {
+    try {
+      const response = await fetch('/api/alunos');
+
+      const data = await response.json();
+      console.log(data);
+
+      if (data.alunos) {
+        // atualiza dinamicamente a tabela com os novos dados
+        const tbody = document.querySelector('.table tbody');
+        tbody.innerHTML = '';
+
+        data.alunos.forEach((aluno) => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+          <td>${aluno.name}</td>
+          <td>${aluno.email}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  window.addEventListener('DOMContentLoaded', getAlunos);
+</script>
 
 <%- include('includes/footer') %>
