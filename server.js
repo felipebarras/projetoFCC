@@ -17,7 +17,6 @@ const helmet = require('helmet');
 const csrf = require('csurf');
 const {
   middlewareGlobal,
-  outroMiddleware,
   checkCsrfError,
   csrfMiddleware
 } = require('./src/middlewares/middleware');
@@ -65,7 +64,6 @@ app.set('view engine', 'ejs');
 app.use(csrf());
 // Nossos próprios middlewares
 app.use(middlewareGlobal);
-app.use(outroMiddleware);
 app.use(checkCsrfError);
 app.use(csrfMiddleware);
 
